@@ -1,0 +1,580 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>F
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="author" content="Soccertipss Sports">
+    <meta name="description" content="Oddspredicts offers sure soccer betting tips, including fixed matches, daily odds, and SportPesa jackpots. Subscribe for guaranteed wins!">
+    <meta name="keywords" content="soccer tips, fixed matches, betting tips, SportPesa jackpot, daily odds, sure bets, Victonic Sports">
+    <meta name="robots" content="index, follow">
+    <title>100% Sure tips | Sure Tips</title>
+    
+    <link rel="icon" type="image/gif" href="/tab.gif"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400&family=Paytone+One&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Josefin Sans', sans-serif;
+            background: #0f1929 url('paper.gif') repeat top left;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* --- SPLASH & COUNTRY SCREEN STYLES --- */
+        #splash-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: #0f1929;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out;
+        }
+        #splash-screen h1 {
+            font-family: 'Paytone One', sans-serif;
+            color: #ff5733;
+            font-size: 3rem;
+            animation: pulse 1.5s infinite;
+        }
+
+        #country-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: #0f1929;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9998;
+            padding: 20px;
+            text-align: center;
+        }
+        #country-screen h2 {
+            font-family: 'Paytone One', sans-serif;
+            color: #ff9900;
+            margin-bottom: 30px;
+        }
+        .country-btn {
+            background: #1c1c1c;
+            border: 2px solid #ff5733;
+            color: #fff;
+            font-size: 1.5rem;
+            font-family: 'Paytone One', sans-serif;
+            padding: 15px 40px;
+            margin: 10px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 300px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .country-btn:hover {
+            background: #ff5733;
+            transform: scale(1.05);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* --- MAIN APP STYLES --- */
+        #main-app { display: none; }
+        .container { max-width: 1200px; padding: 20px; }
+        .card {
+            background: #1c1c1c;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5); }
+        .card-header {
+            background: linear-gradient(90deg, #ff5733, #ff9900);
+            color: #ffffff;
+            font-family: 'Paytone One', sans-serif;
+            font-size: 1.5rem;
+            text-align: center;
+            padding: 15px;
+        }
+        .card-body { padding: 20px; text-align: center; }
+        .card-title { color: #ffaa00; font-size: 1.25rem; margin-bottom: 10px; }
+        .card-text { color: #cccccc; font-size: 1rem; margin-bottom: 10px; }
+        .card-img-top { max-width: 100px; height: auto; margin: 10px auto; display: block; }
+        .btn-custom {
+            background-color: #ff0066;
+            color: #ffffff;
+            font-weight: bold;
+            border-radius: 8px;
+            padding: 10px 20px;
+            transition: background-color 0.3s;
+        }
+        .btn-custom:hover { background-color: #cc0000; color: #ffffff; }
+        .table { background: #333; color: #ADD8E6; border-radius: 8px; overflow: hidden; max-width: 100%; }
+        .table th { background-color: #444; color: white; font-weight: bold; text-align: center; }
+        .table td { text-align: center; vertical-align: middle; }
+        .modal-content { background: #333; color: #ffffff; border-radius: 15px; }
+        .modal-header { background: #ff5733; color: #ffffff; border-bottom: none; }
+        .modal-title { font-family: 'Paytone One', sans-serif; }
+        .list-group-item { background: #444; color: #cccccc; border: none; }
+        .list-group-item strong { color: #ff0066; }
+        .copy-btn {
+            background-color: #ff9900; border: none; color: #ffffff;
+            padding: 5px 10px; border-radius: 5px; margin-left: 10px; cursor: pointer;
+        }
+        .copy-btn:hover { background-color: #cc7700; }
+        .past-tips .card-header { background: linear-gradient(45deg, #29b6f6, #4f7b86); }
+        .past-tips .table { background: #444; }
+        .network-title { color: #ffaa00; margin-top: 15px; text-decoration: underline; }
+        .loader { border: 4px solid #f3f3f3; border-top: 4px solid #ff5733; border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite; margin: 20px auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+
+    <div id="splash-screen">
+        <h1>SOCCERTIPS SPORTS</h1>
+        <p>Loading the best odds...</p>
+    </div>
+
+    <div id="country-screen">
+        <h2>Select Your Country</h2>
+        <button class="country-btn" onclick="selectCountry('ke')">🇰🇪 Kenya</button>
+        <button class="country-btn" onclick="selectCountry('ug')">🇺🇬 Uganda</button>
+        <button class="country-btn" onclick="selectCountry('tz')">🇹🇿 Tanzania</button>
+    </div>
+
+    <div id="main-app">
+        <main class="container">
+            
+            <section class="card">
+                <div class="card-header">Free Tip of the Day</div>
+                <div class="card-body">
+                    <h2 class="card-title" id="free-tip-time">Ajax vs Willem II .</h2>
+                    <p class="card-text"><strong id="free-tip-match">home win</strong></p>
+                    <p class="card-text" style="color: #0000FF;"><strong id="free-tip-pick">AJAX WIN</strong></p>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-header">VIP TIPS (CS, Fixed, High Odds)</div>
+                <div class="card-body">
+                    <h2 class="card-title" style="color:red;">High Odds</h2>
+                    <h3 class="card-title" style="color:#e0e01b;">Price: <span class="price-ke">KSh 1000</span><span class="price-ug" style="display:none;">UGX 18,720</span><span class="price-tz" style="display:none;">TZS 13,400</span></h3>
+                    <table class="table" id="vip-table">
+                        <thead><tr><th>Match</th><th>Tip</th><th>Odds</th></tr></thead>
+                        <thead><tr><th>Claypole vs Sacachispas</th><th>HTFT</th><th> LOCKED </th></tr></thead>
+                        <thead><tr><th>Grasshoppers vs FC Sion</th><th>HTFT</th><th> LOCKED </th></tr></thead>
+                        <thead><tr><th>Motherwell vs Aberdeen</th><th>CS</th><th> LOCKED </th></tr></thead>
+                        <tbody><tr><td colspan="3"><div class="loader"></div></td></tr></tbody>
+                    </table>
+                    <button class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#dr">Get Slip Now</button>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-header">BASIC TIPS (11 Odds)</div>
+                <div class="card-body">
+                    <h2 class="card-title" style="color:red;">Sure Odds</h2>
+                    <h3 class="card-title">Price: <span class="price-ke">KSh 150</span><span class="price-ug" style="display:none;">UGX 2,800</span><span class="price-tz" style="display:none;">TZS 2,010</span></h3>
+
+                    <table class="table" id="basic-table">
+                        <thead><tr><th>Match</th><th>Tip</th><th>Odds</th></tr></thead>
+                        <thead><tr><th>Alaves VS Valencia</th><th> LOCKED </th><th>XXX</th></tr></thead>
+                        <thead><tr><th>Middlesbrough VS Millwall</th><th> LOCKED </th><th> XX </th></tr></thead>
+                        <thead><tr><th>Southend VS Tamworth</th><th> LOCKED </th><th>XX </th></tr></thead>
+                        <tbody><tr><td colspan="3"><div class="loader"></div></td></tr></tbody>
+                    </table>
+                    <button class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#mozzart">Buy Ticket Now</button>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-header">2 DRAWS (30.5 Odds)</div>
+                <div class="card-body">
+                    <h3 class="card-title">Price: <span class="price-ke">KSh 450</span><span class="price-ug" style="display:none;">UGX 1,870</span><span class="price-tz" style="display:none;">TZS 1,340</span></h3>
+                   
+                    <table class="table" id="draws-table">
+                        <thead><tr><th>Match</th><th>Tip</th><th>Odds</th></tr></thead> 
+                        <thead><tr><th>  LOCKED </th><th> DRAW </th><th> 5.0 </th></tr></thead>
+                        <thead><tr><th>  LOCKED </th><th> DRAW </th><th> 2.50 </th></tr></thead>
+                        <thead><tr><th> LOCKED </th><th> DRAW </th><th> 3.0 </th></tr></thead>
+                        
+                    </table>
+                    <button class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#basictips">Buy Ticket Now</button>
+                </div>
+            </section>
+
+            <section class="card" id="jackpot-section">
+                <div class="card-header">SportPesa JackPot</div>
+                <div class="card-body">
+                    <h2 class="card-title">SportPesa Mega Jackpot</h2>
+                    <h3 class="card-title">Price: KSh 300</h3>
+                   
+                    <p class="card-text">Guaranteed Bonus</p>
+                    
+                    <button class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#sp">Buy Ticket Now</button>
+                </div>
+            </section>
+
+            <section class="past-tips">
+                <h1 class="text-center mb-4" style="color:#00e600;">Past Tips History</h1> 
+                 <h1 class="text-center mb-4" style="color:#00e600;">14/09/2026</h1>  
+                <table class="table" id="basic-table">
+                        <thead><tr><th>Match</th><th>Tip/ODDS</th><th>Status</th></tr></thead> 
+                        <thead><tr><th> Como 1907 - Parma </th><th> CS 2-1(13.55) </th><th> WON </th></tr></thead>
+                        <thead><tr><th> Moreirense - Maritimo </th><th> HTFT 1/1 (5.5)</th><th> WON </th></tr></thead>
+                        <thead><tr><th> Villarreal - Real Betis </th><th> GG (2.25)</th><th> WON </th></tr></thead>
+                        <tbody><tr><td colspan="3"><div class="loader"></div></td></tr></tbody>
+                    </table>
+                
+                <h1 class="text-center mb-4" style="color:#00e600;">13/09/2026</h1>  
+                <table class="table" id="basic-table">
+                        <thead><tr><th>Match</th><th>Tip/ODDS</th><th>Status</th></tr></thead> 
+                        <thead><tr><th> FC Heidenheim -:- Holstein Kiel </th><th> CS 1-0(8.5) </th><th> WON </th></tr></thead>
+                        <thead><tr><th> Coventry -:- Brighton </th><th> HTFT 2/2 (4.5)</th><th> WON </th></tr></thead>
+                        <thead><tr><th> Zwolle -:- Feyenoord </th><th> HTFT 2/2 (6.25)</th><th> WON </th></tr></thead>
+                        <tbody><tr><td colspan="3"><div class="loader"></div></td></tr></tbody>
+                    </table>
+              
+                <h1 class="text-center mb-4" style="color:#00e600;">12/09/2026</h1>  
+                <table class="table" id="basic-table">
+                        <thead><tr><th>Match</th><th>Tip/ODDS</th><th>Status</th></tr></thead> 
+                        <thead><tr><th> Rapid -:- FC Voluntari </th><th> CS 2-1(10.0) </th><th> WON </th></tr></thead>
+                        <thead><tr><th> Alger -:- NIGELEC </th><th> HTFT 1/1 (7.5)</th><th> WON </th></tr></thead>
+                        <thead><tr><th> Zamalek SC -:- Port </th><th> HTFT 1/1 (5.25)</th><th> WON </th></tr></thead>
+                        <tbody><tr><td colspan="3"><div class="loader"></div></td></tr></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="text-center mt-4 mb-5">
+                <h3 style="color:white;">Contact Us</h3>
+                <a href="https://wa.me/254753620916?text=I'm%20interested%20in%20your%20fixed%20games%20today" rel="nofollow" class="btn btn-success m-1">WhatsApp</a>
+                <a href="https://twitter.com/victonic_sports" rel="nofollow" class="btn btn-primary m-1">Twitter</a>
+                <a href="https://t.me/+GEkAL_4kqyJjNDc0" rel="nofollow" class="btn btn-info m-1">Telegram</a>
+            </section>
+
+            <div class="modal fade payment-modal" id="dr" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title">VIP TIPS</h3>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="pay-ke">
+                                <h4>Get Tips Instantly</h4>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">Go to "Safaricom- Buy Goods & Services"</li>
+                                    <li class="list-group-item bg-success">Enter Till No <strong>5891217</strong> (AGROTIPS) <button class="copy-btn" data-till="5891217">Copy</button></li>
+                                    <li class="list-group-item">Enter amount <strong>KSh 1000</strong>, click "OK"</li>
+                                    <li class="list-group-item">Enter your PIN Number, click OK</li>
+                                </ul>
+                            </div>
+                            <div class="pay-ug" style="display:none;">
+                                <h4 class="network-title">HOW TO PAY VIA MTN Uganda</h4>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">Dial: <strong>*170#</strong> on your MTN Uganda mobile phone.</li>
+                                    <li class="list-group-item">Select: option for "Transfer Money" or Send money</li>
+                                    <li class="list-group-item">Chose: Option to send to "Other Network"</li>
+                                    <li class="list-group-item">Select: The network (Safaricom M-PESA).</li>
+                                    <li class="list-group-item bg-success">Enter Phone Number: <strong>254753620916</strong></li>
+                                    <li class="list-group-item">Enter: amount <strong>UGX 18,720</strong></li>
+                                    <li class="list-group-item">Enter: your MTN PIN to confirm the transaction.</li>
+                                </ul>
+                                <h4 class="network-title">UGANDA AIRTEL Subscribers</h4>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">Dial : <strong>*185#</strong> from your Airtel Uganda line</li>
+                                    <li class="list-group-item">Select : the "Send Money" option</li>
+                                    <li class="list-group-item">Choose: "International Transfer" from the menu.</li>
+                                    <li class="list-group-item">Select: KENYA as the destination country</li>
+                                    <li class="list-group-item bg-success">Enter Phone Number: <strong>254753620916</strong></li>
+                                    <li class="list-group-item">Enter : Amount <strong>UGX 18,720</strong></li>
+                                    <li class="list-group-item">Reason for Transfer: To Buy FIXD odds</li>
+                                </ul>
+                            </div>
+                            <div class="pay-tz" style="display:none;">
+                                <h4 class="network-title">Hatua za Kutuma Pesa Ukitumia VODACOM</h4>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">BONYEZA : <strong>*150*00#</strong> Kwenye simu yako ya Vodacom</li>
+                                    <li class="list-group-item">Chagua Tuma Pesa : Ingia kwenye menyu na uchague "Tuma Pesa"</li>
+                                    <li class="list-group-item">Chagua M-Pesa Kenya: Ingiza na uchague "Pesa za Kimataifa" au "Tuma Nje ya Nchi", kisha chagua M-Pesa KENYA</li>
+                                    <li class="list-group-item bg-success">Ingiza Namba ya Mpokeaji: <strong>254753620916</strong> au <strong>254739162763</strong></li>
+                                    <li class="list-group-item">Weka Kiasi Cha pesa ni: <strong>TZS 13,400</strong></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade payment-modal" id="mozzart" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title">Basic Tips</h3>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h4 class="text-light" style="color:#00e600;">Must Win Games <span style="color:#DC143C;">(100% Sure)</span></h4>
+                            <div class="pay-ke">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">Go to "Safaricom- Buy Goods & Services"</li>
+                                    <li class="list-group-item bg-success">Enter Till No <strong>5891217</strong> (AGROTIPS) <button class="copy-btn" data-till="5891217">Copy</button></li>
+                                    <li class="list-group-item">Enter amount <strong>KSh 150</strong>, click "OK"</li>
+                                </ul>
+                            </div>
+                            <div class="pay-ug" style="display:none;">
+                                <p class="text-warning">Pay <strong>UGX 2,800</strong> Airtel Uganda to Kenya M-Pesa.</p>
+                                <em>(Send to 254713804279 or 254739162763)</em><br><br>
+                            </div>
+                            <div class="pay-tz" style="display:none;">
+                                <p class="text-warning">Pay <strong>TZS 2,010</strong> via Vodacom Pesa za Kimataifa:</p>
+                                <em>(Send to 254753620916 or 254753620916)</em><br><br>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade payment-modal" id="basictips" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title">Draws Tips</h3>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h4 class="text-light" style="color:#00e600;">Must Win Games (Draw)</h4>
+                            <div class="pay-ke">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">Go to "Safaricom- Buy Goods & Services"</li>
+                                     <li class="list-group-item bg-success">Enter Till No <strong>5891217</strong> (AGROTIPS) <button class="copy-btn" data-till="5891217">Copy</button></li>
+                                    <li class="list-group-item">Enter amount <strong>KSh 100</strong>, click "OK"</li>
+                                </ul>
+                            </div>
+                            <div class="pay-ug" style="display:none;">
+                                <p class="text-warning">Pay <strong>UGX 1,870</strong> via mobile money to 254753620916 or 254753620916</p>
+                            </div>
+                            <div class="pay-tz" style="display:none;">
+                                <p class="text-warning">Pay <strong>TZS 1,340</strong> via Vodacom Pesa za Kimataifa to 254753620916 or 254753620916</p>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade payment-modal" id="sp" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title">SportPesa Jackpot</h3>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="pay-ke">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">Go to "Safaricom- Buy Goods & Services"</li>
+                                     <li class="list-group-item bg-success">Enter Till No <strong>5891217</strong> (AGROTIPS) <button class="copy-btn" data-till="5891217">Copy</button></li>
+                                    <li class="list-group-item">Enter amount <strong>KSh 300</strong>, click "OK"</li>
+                                    <li><h5 style="color:#DC143C; margin-top:10px;">KSh 300 SportPesa MEGA & MidWeek</h5></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            // Splash transition
+            setTimeout(function() {
+                $('#splash-screen').css('opacity', '0');
+                setTimeout(function() {
+                    $('#splash-screen').hide();
+                    $('#country-screen').css('display', 'flex');
+                }, 500);
+            }, 1500);
+
+            // Copy to clipboard
+            $('.copy-btn').click(function() {
+                const tillNumber = $(this).data('till');
+                navigator.clipboard.writeText(tillNumber).then(() => {
+                    const btn = $(this);
+                    const originalText = btn.text();
+                    btn.text('Copied!');
+                    setTimeout(() => btn.text(originalText), 1500);
+                });
+            });
+        });
+
+        function selectCountry(countryCode) {
+            $('#country-screen').hide();
+            $('#main-app').fadeIn();
+
+            // Toggle Pricing and Payment instructions
+            $('.pay-ke, .pay-ug, .pay-tz, .price-ke, .price-ug, .price-tz').hide();
+            $(`.pay-${countryCode}, .price-${countryCode}`).show();
+
+            // Handle Jackpot Section specific to Kenya
+            if (countryCode === 'ke') {
+                $('#jackpot-section').show();
+            } else {
+                $('#jackpot-section').hide();
+            }
+
+            // Fetch the API data once the country is selected
+            loadAPIData();
+        }
+
+        async function loadAPIData() {
+            // Setup fetch requests
+            fetchTips('premium', 'vip-table');
+            fetchTips('basic', 'basic-table');
+            fetchTips('draws', 'draws-table');
+            fetchHistory();
+        }
+
+        async function fetchTips(type, tableId) {
+            try {
+                const res = await fetch(`https://www.footyscorelive.com/api/tips.php?type=${type}`);
+                const data = await res.json();
+                renderTipsTable(data, tableId);
+            } catch (err) {
+                console.error(`Error fetching ${type} tips:`, err);
+                $(`#${tableId} tbody`).html('<tr><td colspan="3">Failed to load tips. Please try again later.</td></tr>');
+            }
+        }
+
+        function renderTipsTable(data, tableId) {
+            const tbody = $(`#${tableId} tbody`);
+            tbody.empty();
+
+            if (!data || data.length === 0) {
+                tbody.html('<tr><td colspan="3"> MUST WIN available right now.</td></tr>');
+                return;
+            }
+
+            // Optional: If fetching basic tips, let's grab the first one for "Free Tip of the Day"
+            if (tableId === 'basic-table' && data.length > 0) {
+                const freeTip = data[0];
+                $('#free-tip-time').text(freeTip.kickOff || 'Today');
+                $('#free-tip-match').text(`${freeTip.teamA} VS ${freeTip.teamB}`);
+                $('#free-tip-pick').text(`Pick: ${freeTip.tip}`);
+            }
+
+            data.forEach(item => {
+                // Determine if we show the actual tip or a locked icon
+                const tipDisplay = item.isLocked 
+                    ? '<img src="https://images.unsplash.com/photo-C3gjLSgTKNw?auto=format&fit=crop&w=800&q=80" width="24" height="24" alt="Locked">'
+                    : item.tip;
+                    
+                const oddsDisplay = item.odds ? parseFloat(item.odds).toFixed(2) : '-';
+
+                tbody.append(`
+                    <tr>
+                        <td>${item.teamA} VS ${item.teamB}</td>
+                        <td style="color:#00e600; font-weight:bold;">${tipDisplay}</td>
+                        <td>${oddsDisplay}</td>
+                    </tr>
+                `);
+            });
+        }
+
+        async function fetchHistory() {
+            try {
+                const res = await fetch('https://www.footyscorelive.com/api/history.php');
+                const data = await res.json();
+                renderHistory(data);
+            } catch (err) {
+                console.error("Error fetching history:", err);
+                $('#history-container').html('<p class="text-center text-danger">Failed to load history.</p>');
+            }
+        }
+
+        function renderHistory(data) {
+            const container = $('#history-container');
+            container.empty();
+
+            if (!data || data.length === 0) {
+                container.html('<p class="text-center">No past history available.</p>');
+                return;
+            }
+
+            data.forEach(day => {
+                const date = day.date;
+                const categories = day.categories;
+                
+                for (const catName in categories) {
+                    const matches = categories[catName];
+                    let totalOdds = 1.0;
+                    
+                    let tableRows = '';
+                    matches.forEach(m => {
+                        const scoreDisplay = m.score ? ` (${m.score})` : '';
+                        const resultColor = m.result === 'WON' ? '#00e600' : (m.result === 'LOST' ? '#ff3333' : '#ff9900');
+                        if (m.odds && !isNaN(m.odds)) {
+                            totalOdds *= parseFloat(m.odds);
+                        }
+                        
+                        tableRows += `
+                            <tr>
+                                <td>${m.teamA} VS ${m.teamB}</td>
+                                <td>${m.prediction}${scoreDisplay}</td>
+                                <td>${m.odds || '-'}</td>
+                                <td style="color:${resultColor}; font-weight:bold;">${m.result}</td>
+                            </tr>
+                        `;
+                    });
+
+                    const cardHtml = `
+                        <div class="card mb-3">
+                            <div class="card-header">${date} - ${catName}</div>
+                            <div class="card-body">
+                                <table class="table">
+                                    <thead>
+                                        <tr><th>Team</th><th>Tip</th><th>Odds</th><th>Status</th></tr>
+                                    </thead>
+                                    <tbody>${tableRows}</tbody>
+                                </table>
+                                <p class="card-text" style="color:#ffaa00;">Total Odds: ${totalOdds > 1 ? totalOdds.toFixed(2) : '-'}</p>
+                                <img src="https://images.unsplash.com/photo-pvAOQFDjKSE?auto=format&fit=crop&w=800&q=80" alt="Winning Icon" width="48" height="20" loading="lazy">
+                            </div>
+                        </div>
+                    `;
+                    container.append(cardHtml);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
